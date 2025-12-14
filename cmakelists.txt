@@ -1,0 +1,57 @@
+cmake_minimum_required(VERSION 3.16)
+project(MogekoCastleGaiden VERSION 1.0.0 LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Find packages
+find_package(SDL2 CONFIG REQUIRED)
+find_package(SDL2_image CONFIG REQUIRED)
+find_package(SDL2_ttf CONFIG REQUIRED)
+find_package(SDL_mixer_ext CONFIG QUIET)
+
+# If SDL_mixer_ext not found via config, try pkg-config
+if(NOT SDL_mixer_ext_FOUND)
+    find_package(PkgConfig QUIET)
+    if(PKG_CONFIG_FOUND)
+        pkg_check_modules(SDL_MIXER_EXT IMPORTED_TARGET SDL2_mixer_ext)
+    endif()
+endif()
+
+# Source files
+set(SOURCES
+    src/main.cpp
+    src/ui/loading_screen.cpp
+    src/ui/dialogue_system.cpp
+    src/engine/title.cpp
+)
+
+# Create executable
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+# Link SDL2, SDL2_image, and SDL2_ttf
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+    $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+    $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>
+    $<IF:$<TARGET_EXISTS:SDL2_ttf::SDL2_ttf>,SDL2_ttf::SDL2_ttf,SDL2_ttf::SDL2_ttf-static>
+)
+
+# Link SDL_mixer_ext
+if(TARGET SDL2_mixer_ext::SDL2_mixer_ext)
+    target_link_libraries(${PROJECT_NAME} PRIVATE SDL2_mixer_ext::SDL2_mixer_ext)
+elseif(TARGET SDL_mixer_ext::SDL_mixer_ext)
+    target_link_libraries(${PROJECT_NAME} PRIVATE SDL_mixer_ext::SDL_mixer_ext)
+elseif(TARGET PkgConfig::SDL_MIXER_EXT)
+    target_link_libraries(${PROJECT_NAME} PRIVATE PkgConfig::SDL_MIXER_EXT)
+else()
+    message(WARNING "SDL_mixer_ext not found. Audio will be disabled.")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE NO_AUDIO)
+endif()
+
+# Copy assets to build directory
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/assets
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets
+)

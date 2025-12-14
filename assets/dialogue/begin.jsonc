@@ -1,0 +1,47 @@
+/*
+Those are Dialogue files for the game "Mogeko Castle Gaiden: Github Madness".
+
+This Game is licensed under the MIT License.
+
+Please do not remove this comment.
+*/
+
+// Format will be evented. \p[ms] will pause for ms milliseconds. \c[color] will change the color of the text.
+{
+    "event": "begin",
+    "speed": 50, // Words per millisecond(s)
+    "dialogue": [
+        {
+            "text": "Long ago,\p[650] Two races ruled over earth:\p[650]\n HUMANS and MOGEKOS.",
+            "index": 1
+        }
+        {
+            "text": "One day,\p[650]\n a great war broke out between the two races.",
+            "index": 2
+        }
+        {
+            "text": "After a long battle,\p[650]\n the Mogekos were defeated.",
+            "index": 3
+        }
+        {
+            "text": "They sealed the Mogeko Castle \nand retreated to The Gray World.",
+            "index": 4
+        }
+        {
+            "text": "Many years later...",
+            "index": 5
+        }
+        {
+            "text": "FLAME UNDERWORLD\p[500]\n2012",
+            "index": 6
+        }
+        {
+            "text": "Legends say that Demons who could control the power of fire were able to control the world.",
+            "index": 7
+        }
+        {
+            "text": "",
+            "index": 8
+        }
+    ]
+}
