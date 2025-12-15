@@ -1,16 +1,14 @@
 # Mogeko Castle Gaiden: Github Madness - CI/CD Pipeline
-name: Build & Release
+name: Build
 
 on:
   push:
     branches: ["main"]
-    tags: ["v*"]
   pull_request:
     branches: ["main"]
 
 env:
   BUILD_TYPE: Release
-  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
 
 jobs:
   build:
@@ -41,51 +39,31 @@ jobs:
         with:
           submodules: recursive
 
-      # Setup vcpkg caching
-      - name: Export GitHub Actions cache environment variables
-        uses: actions/github-script@v7
-        with:
-          script: |
-            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
-
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgDirectory: ${{ github.workspace }}/vcpkg
-          vcpkgGitCommitId: "c82f74667287d3dc386bce81e44964370c91a289"
-
       # Install Linux dependencies
       - name: Install Linux dependencies
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config
+          sudo apt-get install -y libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config libxi-dev libxrandr-dev
 
-      - name: Set reusable strings
-        id: strings
-        shell: bash
-        run: |
-          echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+      # Setup vcpkg
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgDirectory: ${{ github.workspace }}/vcpkg
+          runVcpkgInstall: true
 
       - name: Configure CMake
         run: >
-          cmake -B ${{ steps.strings.outputs.build-output-dir }}
+          cmake -B build
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
           -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
           -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg_triplet }}
-          -S ${{ github.workspace }}
 
       - name: Build
-        run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ env.BUILD_TYPE }}
-
-      # Copy assets to build output
-      - name: Copy assets
-        shell: bash
-        run: |
-          cp -r assets ${{ steps.strings.outputs.build-output-dir }}/
+        run: cmake --build build --config ${{ env.BUILD_TYPE }}
 
       # Upload build artifacts
       - name: Upload artifacts
@@ -93,7 +71,7 @@ jobs:
         with:
           name: ${{ matrix.artifact_name }}
           path: |
-            ${{ steps.strings.outputs.build-output-dir }}/${{ env.BUILD_TYPE }}/*.exe
-            ${{ steps.strings.outputs.build-output-dir }}/MogekoCastleGaiden
-            ${{ steps.strings.outputs.build-output-dir }}/assets/
+            build/${{ env.BUILD_TYPE }}/*.exe
+            build/MogekoCastleGaiden
+            build/assets/
           if-no-files-found: warn

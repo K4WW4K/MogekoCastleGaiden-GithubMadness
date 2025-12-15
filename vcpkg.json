@@ -1,0 +1,19 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+    "name": "mogeko-castle-gaiden",
+    "version": "1.0.0",
+    "description": "Mogeko Castle Gaiden: Github Madness",
+    "dependencies": [
+        "sdl2",
+        "sdl2-image",
+        "sdl2-ttf",
+        {
+            "name": "sdl-mixer-ext",
+            "features": [
+                "mp3",
+                "fluidsynth",
+                "nativemidi"
+            ]
+        }
+    ]
+}
