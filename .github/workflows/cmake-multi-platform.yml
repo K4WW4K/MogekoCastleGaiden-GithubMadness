@@ -47,9 +47,8 @@ jobs:
           sudo apt-get install -y \
             libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config \
             libxi-dev libxrandr-dev libxxf86vm-dev libxss-dev \
-            libasound2-dev libpulse-dev libsndio-dev \
+            libasound2-dev libpulse-dev \
             libflac-dev libvorbis-dev libmpg123-dev libopus-dev \
-            libfluidsynth-dev libtimidity-dev \
             autoconf automake libtool nasm
 
       # Setup vcpkg
