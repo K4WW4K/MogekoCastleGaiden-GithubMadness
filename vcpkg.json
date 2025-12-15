@@ -10,18 +10,10 @@
         {
             "name": "sdl2-mixer-ext",
             "features": [
-                "ffmpeg",
-                "fluidsynth",
-                "libadlmidi",
+                "nativemidi",
                 "libflac",
-                "libgme",
-                "libmodplug",
                 "libvorbis",
-                "mpg123",
-                "openmpt",
-                "opusfile",
-                "timidity",
-                "wavpack"
+                "mpg123"
             ]
         }
     ]
