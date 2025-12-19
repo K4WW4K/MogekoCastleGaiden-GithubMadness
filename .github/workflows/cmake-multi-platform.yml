@@ -36,8 +36,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       # Install Linux dependencies
       - name: Install Linux dependencies
@@ -51,11 +49,11 @@ jobs:
             libflac-dev libvorbis-dev libmpg123-dev libopus-dev \
             autoconf automake libtool nasm
 
-      # Setup vcpkg
+      # Setup vcpkg (clones it automatically)
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
-          vcpkgDirectory: ${{ github.workspace }}/vcpkg
+          vcpkgGitCommitId: "c82f74667287d3dc386bce81e44964370c91a289"
           runVcpkgInstall: true
 
       - name: Configure CMake
